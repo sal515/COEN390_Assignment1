@@ -1,5 +1,6 @@
 package ca.salmanrahman.assignment1_390;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +14,8 @@ public class MainActivity extends AppCompatActivity {
     // ============================================================================================
 
     // attribute for a button is created
-        private Button switch2gradeActivityButton;
-        private TextView descriptionTextmainActivity;
+    private Button switch2gradeActivityButton;
+    private TextView descriptionTextmainActivity;
 
     // ============================================================================================
     //                      Definition of Methods
@@ -37,11 +38,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Button logic written here
-                descriptionTextmainActivity.setText(R.string.descriptionText_mainActivity);
+                // descriptionTextmainActivity.setText(R.string.descriptionText_mainActivity);
+                go_to_gradeActivity();
 
             }
         });
 
+    }
+
+
+    private void go_to_gradeActivity() {
+        // This intent object allows to link activity1 to activity2
+        // Intent intent = new Intent(MainActivity.this, second_activity.class);
+        Intent intent = new Intent(this, gradeActivity.class);
+
+        // The Following sends a string from this activity to another as mentioned above
+//        intent.putExtra(secret_message, "This is from MainActivity");
+
+        startActivity(intent);
     }
 
 
