@@ -13,11 +13,11 @@ public class MainActivity extends AppCompatActivity {
     // ============================================================================================
 
     // attribute for a button is created, which references the button in the layout of this activity
-//    private Button switch2gradeActivityButton = findViewById(R.id.switch2gradeActivity_button);
-    final TextView descriptionTextmainActivity = findViewById(R.id.descriptionText_mainActivity);
+    //    private Button switch2gradeActivityButton = findViewById(R.id.switch2gradeActivity_button);
+    //    final TextView descriptionTextmainActivity = findViewById(R.id.descriptionText_mainActivity);
 
-    //    private final Button switch2gradeActivityButton = findViewById(R.id.switch2gradeActivity_button);
-    //    private final TextView descriptionTextmainActivity = findViewById(R.id.descriptionTextmain_Activity);
+        private Button switch2gradeActivityButton;
+        private TextView descriptionTextmainActivity;
 
     // ============================================================================================
     //                      Definition of Methods
@@ -30,19 +30,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        switch2gradeActivityButton = findViewById(R.id.switch2gradeActivity_button);
+        descriptionTextmainActivity = findViewById(R.id.descriptionText_mainActivity);
 
 
-//        // Generic code to implement a button
-//        switch2gradeActivityButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Button logic written here
-//                descriptionTextmainActivity.setText(R.string.descriptionTextmain_Activity);
-//
-//            }
-//        });
 
+        // Generic code to implement a button
+        switch2gradeActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Button logic written here
+                descriptionTextmainActivity.setText(R.string.descriptionText_mainActivity);
 
+            }
+        });
 
     }
 
