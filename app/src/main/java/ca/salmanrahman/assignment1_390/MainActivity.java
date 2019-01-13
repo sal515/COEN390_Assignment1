@@ -12,10 +12,7 @@ public class MainActivity extends AppCompatActivity {
     //                      Declaration of Member variables / Attributes
     // ============================================================================================
 
-    // attribute for a button is created, which references the button in the layout of this activity
-    //    private Button switch2gradeActivityButton = findViewById(R.id.switch2gradeActivity_button);
-    //    final TextView descriptionTextmainActivity = findViewById(R.id.descriptionText_mainActivity);
-
+    // attribute for a button is created
         private Button switch2gradeActivityButton;
         private TextView descriptionTextmainActivity;
 
@@ -29,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // attributes of the mainActivity class is initialized with the id of respective buttons or
+        // textview from layout
 
         switch2gradeActivityButton = findViewById(R.id.switch2gradeActivity_button);
         descriptionTextmainActivity = findViewById(R.id.descriptionText_mainActivity);
