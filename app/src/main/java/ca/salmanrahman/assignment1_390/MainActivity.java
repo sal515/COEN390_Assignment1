@@ -27,12 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // attributes of the mainActivity class is initialized with the id of respective buttons or
-        // textview from layout
-
+        // attributes are initialized with the id of respective buttons or textview from layout
         switch2gradeActivityButton = findViewById(R.id.switch2gradeActivity_button);
         descriptionTextmainActivity = findViewById(R.id.descriptionText_mainActivity);
-
 
 
         // Generic code to implement a button

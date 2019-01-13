@@ -3,4 +3,5 @@
     <string name="descriptionText_mainActivity">Button worked!</string>
     <string name="grade_activity_actionBar">Grade Activity</string>
     <string name="view_grades">View Grades</string>
+    <string name="title_activity_grade">gradeActivity</string>
 </resources>
