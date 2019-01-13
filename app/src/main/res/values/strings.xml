@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Assignment1_390</string>
+    <string name="grade_activity_actionBar">Grade Activity</string>
+    <string name="view_grades">View Grades</string>
 </resources>
