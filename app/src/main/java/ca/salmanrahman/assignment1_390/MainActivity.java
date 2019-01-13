@@ -2,12 +2,29 @@ package ca.salmanrahman.assignment1_390;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button gradeActivityButton;
+    // ============================================================================================
+    //                      Declaration of Member variables / Attributes
+    // ============================================================================================
 
+    // attribute for a button is created, which references the button in the layout of this activity
+//    private Button switch2gradeActivityButton = findViewById(R.id.switch2gradeActivity_button);
+    final TextView descriptionTextmainActivity = findViewById(R.id.descriptionText_mainActivity);
+
+    //    private final Button switch2gradeActivityButton = findViewById(R.id.switch2gradeActivity_button);
+    //    private final TextView descriptionTextmainActivity = findViewById(R.id.descriptionTextmain_Activity);
+
+    // ============================================================================================
+    //                      Definition of Methods
+    // ============================================================================================
+
+
+    // onCreate method for the activity (falls within the life cycle of an activity)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,8 +32,19 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }
+//        // Generic code to implement a button
+//        switch2gradeActivityButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Button logic written here
+//                descriptionTextmainActivity.setText(R.string.descriptionTextmain_Activity);
+//
+//            }
+//        });
 
+
+
+    }
 
 
 }
