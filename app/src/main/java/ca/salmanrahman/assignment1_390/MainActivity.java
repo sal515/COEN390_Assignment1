@@ -14,8 +14,8 @@ public class MainActivity extends AppCompatActivity {
     // ============================================================================================
 
     // attribute for a button is created
-    private Button switch2gradeActivityButton;
-    private TextView descriptionTextmainActivity;
+    private Button gradeActivityButton;
+    private TextView descriptionMainTextView;
 
     // ============================================================================================
     //                      Definition of Methods
@@ -32,21 +32,24 @@ public class MainActivity extends AppCompatActivity {
 
         // attributes are initialized with the id of respective buttons or textview from layout
        // NOTE: Android Studio < V3 requires the findViewByID to be casted accordingly
-        switch2gradeActivityButton = findViewById(R.id.switch2gradeActivity_button);
-        descriptionTextmainActivity = findViewById(R.id.descriptionText_mainActivity);
+        gradeActivityButton = findViewById(R.id.gradeActivityButton);
+        descriptionMainTextView = findViewById(R.id.descriptionMainTextView);
 
+        prepareViews();
 
+    }
+
+    private void prepareViews(){
         // Generic code to implement a button
-        switch2gradeActivityButton.setOnClickListener(new View.OnClickListener() {
+        gradeActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Button logic written here
-                 descriptionTextmainActivity.setText(R.string.view_grades);
+                descriptionMainTextView.setText(R.string.viewGrades);
                 go_to_gradeActivity();
 
             }
         });
-
     }
 
 

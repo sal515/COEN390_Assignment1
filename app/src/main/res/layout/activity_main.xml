@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/descriptionText_mainActivity"
+        android:id="@+id/descriptionMainTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -19,13 +19,13 @@
         app:layout_constraintVertical_bias="0.076" />
 
     <Button
-        android:id="@+id/switch2gradeActivity_button"
+        android:id="@+id/gradeActivityButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorPrimaryDark"
         android:fontFamily="sans-serif"
         android:lineSpacingExtra="14sp"
-        android:text="@string/view_grades"
+        android:text="@string/viewGrades"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="24sp"
@@ -36,6 +36,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionText_mainActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionMainTextView" />
 
 </android.support.constraint.ConstraintLayout>

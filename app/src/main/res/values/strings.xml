@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Assignment1_390</string>
-    <string name="descriptionText_mainActivity">Button worked!</string>
-    <string name="grade_activity_actionBar">Grade Activity</string>
-    <string name="view_grades">View Grades</string>
-    <string name="title_activity_grade">Grades</string>
-    <string name="letter_grade">Show Letter Grades</string>
+    <string name="descriptionMainActivityTextBox">Button worked!</string>
+    <string name="gradeActivity">Grade Activity</string>
+    <string name="viewGrades">View Grades</string>
+    <string name="grades">Grades</string>
+    <string name="showLetterGrade">Show Letter Grades</string>
 
     <!--Example string that has tags other than the text formating tags, this requires CDATA-->
     <!--
