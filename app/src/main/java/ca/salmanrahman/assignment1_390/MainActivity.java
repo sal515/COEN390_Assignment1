@@ -25,10 +25,13 @@ public class MainActivity extends AppCompatActivity {
     // onCreate method for the activity (falls within the life cycle of an activity)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // chaining upwards to superclass, so that Android Activity Initialization can be done
         super.onCreate(savedInstanceState);
+        // Letting android know what will be the layout of the interface for this activity
         setContentView(R.layout.activity_main);
 
         // attributes are initialized with the id of respective buttons or textview from layout
+       // NOTE: Android Studio < V3 requires the findViewByID to be casted accordingly
         switch2gradeActivityButton = findViewById(R.id.switch2gradeActivity_button);
         descriptionTextmainActivity = findViewById(R.id.descriptionText_mainActivity);
 
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Button logic written here
-                // descriptionTextmainActivity.setText(R.string.descriptionText_mainActivity);
+                 descriptionTextmainActivity.setText(R.string.view_grades);
                 go_to_gradeActivity();
 
             }

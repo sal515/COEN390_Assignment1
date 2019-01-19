@@ -5,4 +5,21 @@
     <string name="view_grades">View Grades</string>
     <string name="title_activity_grade">Grades</string>
     <string name="letter_grade">Show Letter Grades</string>
+
+    <!--Example string that has tags other than the text formating tags, this requires CDATA-->
+    <!--
+    <string name="Example_string_with_CDMA">
+    <![CDATA[
+    <html>
+    <body>
+    <h1>TPS Report for: {{reportDate}}</h1>
+    <p>Here are the contents of the TPS report:</p>
+    <p>{{message}}</p>
+    <p>If you have any questions regarding this report, please do <b>not</b> ask Mark Murphy.</p>
+    </body>
+    </html>
+    ]]>
+    </string>
+    -->
+
 </resources>
