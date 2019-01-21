@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private void go_to_gradeActivity() {
         // This intent object allows to link activity1 to activity2
         // Intent intent = new Intent(MainActivity.this, second_activity.class);
-        Intent intent = new Intent(this, gradeActivity.class);
+        Intent intent = new Intent(this, GradeActivity.class);
 
         // The Following sends a string from this activity to another as mentioned above
 //        intent.putExtra(secret_message, "This is from MainActivity");
