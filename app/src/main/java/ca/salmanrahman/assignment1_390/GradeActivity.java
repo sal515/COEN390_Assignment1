@@ -69,6 +69,11 @@ public class GradeActivity extends AppCompatActivity {
                 // Respond to the action bar's Up/Home button
                 case android.R.id.home:
                     NavUtils.navigateUpFromSameTask(this);
+
+//                    Toast.makeText(this, "Going Back?", Toast.LENGTH_LONG).show();
+
+                    // Testing to Destroy Grade Activity on press of back button
+//                    finish();
                     return true;
 
                 case R.id.letterGradeCheckbox:
