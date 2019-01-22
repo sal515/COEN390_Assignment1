@@ -42,14 +42,30 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
         TextView textView = new TextView(getContext());
         RelativeLayout relativeLayout = convertView.findViewById(R.id.customRowsGA);
         generateAssignmentTextView(relativeLayout, textView);
-        textView.setText(course.getCourseTitle());
+        // textView.setText(Integer.toString(position));
+
+//        ArrayList<Integer> assignmentArrayListSizes = extractAssignmentArrayListSizes(course,
+//                position);
+
+        int assignmentListSize = course.getAssignments().size();
+
+        // testing the values of the assignmentArrayListSizes
+         textView.setText(Integer.toString(assignmentListSize));
+
+
+        // Checking the row position values
+        // textView.setText(Integer.toString(position));
+
+
+        // Checking the assignment ArrayList sizes for each courses
+        // textView.setText(Integer.toString(course.getAssignments().size()));
 
         // return the completed view to render on screen
         return convertView;
     }
 
 
-    public void generateAssignmentTextView(RelativeLayout relativeLayout, TextView textView ) {
+    public void generateAssignmentTextView(RelativeLayout relativeLayout, TextView textView) {
 
         int allPadding = 10;
 
@@ -60,17 +76,22 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
         relativeLayout.addView(textView);
     }
 
-    // https://bit.ly/2DsU7q3
-    public int pxToDp(int px)
-    {
-        return (int) (px / Resources.getSystem().getDisplayMetrics().density);
-    }
-    // https://bit.ly/2DsU7q3
-    public int dpToPx(int dp)
-    {
-        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    public int generateAssignmentTextView (Course course, int numberOfAssignments){
+
+
+        return numberOfAssignments;
     }
 
+
+    // https://bit.ly/2DsU7q3
+    public int pxToDp(int px) {
+        return (int) (px / Resources.getSystem().getDisplayMetrics().density);
+    }
+
+    // https://bit.ly/2DsU7q3
+    public int dpToPx(int dp) {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
 
 
 }
