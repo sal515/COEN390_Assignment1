@@ -25,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
     // onCreate method for the activity (falls within the life cycle of an activity)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         // chaining upwards to superclass, so that Android Activity Initialization can be done
         super.onCreate(savedInstanceState);
+
         // Letting android know what will be the layout of the interface for this activity
         setContentView(R.layout.activity_main);
 
@@ -59,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GradeActivity.class);
 
         // The Following sends a string from this activity to another as mentioned above
-//        intent.putExtra(secret_message, "This is from MainActivity");
-
+        // intent.putExtra(secret_message, "This is from MainActivity");
         startActivity(intent);
     }
 
