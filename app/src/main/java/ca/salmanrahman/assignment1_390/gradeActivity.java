@@ -12,32 +12,39 @@ import java.util.ArrayList;
 
 public class GradeActivity extends AppCompatActivity {
 
-    private GradeActivityCustomAdapter coursesAdapter;
-    private ListView coursesListView;
-
     ArrayList<Course> courses;
-
-//    private TextView testActionBackChbx;
-//
-//    ArrayList<String> coursesTitles = new ArrayList<String>(5);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade);
 
+        // ArrayList of Course objects
+        courses = generateCourses(5);
 
+        linkAdapterToListView(courses);
 
-//        prepareListView();
+    }
+
+    private void linkAdapterToListView(ArrayList<Course> courses) {
+
+        // New object of Custom Array Adapter is created, it converts the array to views
+        CustomAdapterGradeActivity adapterGradeActivity = new CustomAdapterGradeActivity(
+                this, courses );
+        // Connect the adapter to the ListView
+        ListView listView = findViewById(R.id.listViewIDGA);
+        listView.setAdapter(adapterGradeActivity);
 
 
     }
 
-    private void prepareListView() {
-        coursesAdapter = new GradeActivityCustomAdapter(this, courses, 5);
-        coursesListView.setAdapter(coursesAdapter);
-
+    // To generate courseTitle
+    private ArrayList<Course> generateCourses(int numberCourses) {
+        ArrayList<Course> courses = new ArrayList<Course>(5);
+        for (int i = 1; i < numberCourses; i++) {
+            courses.add(Course.generateRandomCourse());
+        }
+        return courses;
     }
 
 

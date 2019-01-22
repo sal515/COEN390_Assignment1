@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
-        android:id="@+id/gradeActivityListView"
+        android:id="@+id/listViewIDGA"
         android:layout_width="363dp"
         android:layout_height="519dp"
         android:layout_marginTop="8dp"

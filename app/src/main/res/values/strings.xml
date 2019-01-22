@@ -5,6 +5,8 @@
     <string name="viewGrades">View Grades</string>
     <string name="grades">Grades</string>
     <string name="showLetterGrade">Show Letter Grades</string>
+    <string name="course_average">Course Average</string>
+    <string name="course_name">Course Name</string>
 
     <!--Example string that has tags other than the text formating tags, this requires CDATA-->
     <!--
