@@ -39,18 +39,26 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
         courseTitle.setText(course.getCourseTitle());
         courseAverage.setText("50");
 
-        TextView textView = new TextView(getContext());
+
+
+        // Getting reference to the Relative Layout
         RelativeLayout relativeLayout = convertView.findViewById(R.id.customRowsGA);
-        generateAssignmentTextView(relativeLayout, textView);
+
+        // Dynamic TextView Generated
+
+//        TextView textView = new TextView(getContext());
+//        generateAssignmentTextView(relativeLayout, textView);
         // textView.setText(Integer.toString(position));
 
 //        ArrayList<Integer> assignmentArrayListSizes = extractAssignmentArrayListSizes(course,
 //                position);
 
-        int assignmentListSize = course.getAssignments().size();
+        int numberOfAssignments = course.getAssignments().size();
+        addAssignmentTextViewsToLayout(course, relativeLayout, position,
+                numberOfAssignments);
 
         // testing the values of the assignmentArrayListSizes
-         textView.setText(Integer.toString(assignmentListSize));
+//        textView.setText(Integer.toString(numberOfAssignments));
 
 
         // Checking the row position values
@@ -65,7 +73,74 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
     }
 
 
-    public void generateAssignmentTextView(RelativeLayout relativeLayout, TextView textView) {
+    public void addAssignmentTextViewsToLayout (Course course, RelativeLayout relativeLayout, int position, int numberOfAssignments){
+
+        for (int i = 0; i < numberOfAssignments; i++) {
+
+//            TextView textView = new TextView(getContext());
+            TextView textView;
+            textView = generateAssignmentTextView(course, relativeLayout, position, i);
+            // The following adds the textView to the relative layout
+            relativeLayout.addView(textView);
+        }
+    }
+
+    public TextView generateAssignmentTextView(Course course, RelativeLayout relativeLayout, int position, int index ) {
+
+        // Create new textView objects
+        TextView textView = new TextView(getContext());
+        // Generating ID for current TextView
+        int id = Integer.parseInt(generateID(position, index));
+        // set each TextView object with new id
+        textView.setId(id);
+        // Layout for textView Objects
+        RelativeLayout.LayoutParams textViewLayout = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        // Generating First CheckID
+        int firstIDInRow = Integer.parseInt(generateID(position, 0));
+        // for the first dynamic TextView in row, should be added below the Course Title
+        if (id == firstIDInRow) {
+            firstTextViewInRow(textViewLayout);
+        } else {
+            otherTextViewInRow(textViewLayout, id);
+        }
+
+        //textViewLayout.addRule(RelativeLayout.BELOW, R.id.courseTitleIDGA);
+
+        int allPadding = 5;
+        textView.setPadding(dpToPx(allPadding), dpToPx(allPadding), dpToPx(allPadding), dpToPx(allPadding));
+        textView.setLayoutParams(textViewLayout);
+
+        // setting textView text
+        String text = course.getAssignments().get(index).getAssignmentTitle() + "        " +
+                Integer.toString(course.getAssignments().get(index).getAssignmentGrade());
+//        textView.setText();
+
+        textView.setText(text);
+
+//                textView.setText("0011");
+        return textView;
+    }
+
+    public void firstTextViewInRow(RelativeLayout.LayoutParams textViewLayout) {
+        textViewLayout.addRule(RelativeLayout.BELOW, R.id.courseTitleIDGA);
+    }
+    public void otherTextViewInRow(RelativeLayout.LayoutParams textViewLayout, int id) {
+        int prevID = (id - 1);
+        textViewLayout.addRule(RelativeLayout.BELOW, prevID);
+    }
+
+
+
+    public static String generateID(int position, int index) {
+        String newID = Integer.toString(position) + Integer.toString(index);
+        return newID;
+    }
+
+
+
+    public void generateSingleTextView(RelativeLayout relativeLayout, TextView textView) {
 
         int allPadding = 10;
 
@@ -73,13 +148,8 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
         textViewLayout.addRule(RelativeLayout.BELOW, R.id.courseTitleIDGA);
         textView.setPadding(dpToPx(allPadding), dpToPx(allPadding), dpToPx(allPadding), dpToPx(allPadding));
         textView.setLayoutParams(textViewLayout);
+        // The following adds the textView to the Layout
         relativeLayout.addView(textView);
-    }
-
-    public int generateAssignmentTextView (Course course, int numberOfAssignments){
-
-
-        return numberOfAssignments;
     }
 
 
