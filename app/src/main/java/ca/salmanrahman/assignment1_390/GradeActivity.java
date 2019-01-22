@@ -12,8 +12,6 @@ import java.util.ArrayList;
 
 public class GradeActivity extends AppCompatActivity {
 
-    private GradeActivityCustomAdapter coursesAdapter;
-    private ListView coursesListView;
 
     ArrayList<Course> courses;
 
@@ -27,80 +25,38 @@ public class GradeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade);
 
+        // ArrayList of Course objects
+        courses = generateCourses(5);
 
+        linkAdapterToListView(courses);
 
+    }
 
+    private void linkAdapterToListView(ArrayList<Course> courses) {
 //        testActionBackChbx = findViewById(R.id.testShowLetterGrade);
 
+        // New object of Custom Array Adapter is created, it converts the array to views
+        CustomAdapterGradeActivity adapterGradeActivity = new CustomAdapterGradeActivity(
+                this, courses );
+        // Connect the adapter to the ListView
+        ListView listView = findViewById(R.id.listViewIDGA);
+        listView.setAdapter(adapterGradeActivity);
 
-
-
-//        generateCourses(courses);
-//        testerFunc(courses);
-//        prepareListView();
 
     }
 
-    private void prepareListView(){
-        coursesAdapter = new GradeActivityCustomAdapter(this, courses, 5);
-        coursesListView.setAdapter(coursesAdapter);
-
-
-
-
-
-
-
-
-        //        ArrayAdapter coursesAdapter = new ArrayAdapter<>(this,
-//                R.layout.custom_row_grade_activity_list_view, courses);
-//
-//        ListView listView = findViewById(R.id.gradeActivityListView);
-//        listView.setAdapter(coursesAdapter);
-//
-//
-//        // setting the onClick listener for the listview
-//        listView.setOnItemClickListener(
-//                new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                        String mobilearray = String.valueOf(parent.getItemAtPosition(position));
-//                        Toast.makeText(GradeActivity.this, mobilearray, Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//        );
+    // To generate courseTitle
+    private ArrayList<Course> generateCourses(int numberCourses) {
+        ArrayList<Course> courses = new ArrayList<Course>(5);
+        for (int i = 1; i < numberCourses; i++) {
+            courses.add(Course.generateRandomCourse());
+        }
+        return courses;
 
     }
 
 
-//    private void testerFunc(ArrayList<Course> courses){
-//        for(int i =0; i < courses.size(); i++){
-//            Toast.makeText(GradeActivity.this, courses.get(i).getCourseTitle(), Toast.LENGTH_SHORT).show();
-//        }
-
-//    }
-
-    // Extract Course Names
-//    private void extractCourseNames(ArrayList courses,ArrayList coursesTitles) {
-//        while
-//        for(int i = 0; i < ; i++){
-//            ;
-//        }
-//    }
-//
-//    // To generate courseTitle
-//    private void generateCourses(ArrayList courses) {
-//        for (int i = 0; i < 5; i++) {
-//            courses.add(Course.generateRandomCourse());
-//        }
-//    }
-//
-//
-//
-
-
-
-        // methods for action bar
+    // methods for action bar
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
             getMenuInflater().inflate(R.menu.gradesacvitity_menu, menu);
