@@ -9,14 +9,17 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
 
-    public CustomAdapterGradeActivity(Context context, ArrayList<Course> courses) {
+    boolean letterGrade;
+
+    public CustomAdapterGradeActivity(Context context, ArrayList<Course> courses, boolean letterGradeParam) {
         super(context, 0, courses);
 
-
+        letterGrade = letterGradeParam;
     }
 
     // Using custom array adapter -->  https://bit.ly/2qtVNYW
@@ -35,48 +38,56 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
         TextView courseTitle = convertView.findViewById(R.id.courseTitleIDGA);
         TextView courseAverage = convertView.findViewById(R.id.courseAverageIDGA);
 
+        DecimalFormat df = new DecimalFormat("###.##");
         // Populate the data into the template view using the data object
         courseTitle.setText(course.getCourseTitle());
-        courseAverage.setText("50");
+        if (Double.isNaN(Double.parseDouble(df.format(averageGrade(course))))) {
+            courseAverage.setText("--");
+
+        } else {
+            if (!letterGrade) {
+                courseAverage.setText("Average: " + Double.toString(Double.parseDouble(df.format(averageGrade(course)))));
+            } else {
+                int averageGradeInt= (int) averageGrade(course);
+                courseAverage.setText("Average: " + conversionRangesForLetterGrades(averageGradeInt));
+            }
+        }
 
 
 
         // Getting reference to the Relative Layout
         RelativeLayout relativeLayout = convertView.findViewById(R.id.customRowsGA);
 
-        // Dynamic TextView Generated
-
+        // Dynamic Single TextView Generate TO TEST:
 //        TextView textView = new TextView(getContext());
-//        generateAssignmentTextView(relativeLayout, textView);
-        // textView.setText(Integer.toString(position));
+//        generateSingleTextView(relativeLayout, textView);
+//        textView.setText(Integer.toString(position));
 
-//        ArrayList<Integer> assignmentArrayListSizes = extractAssignmentArrayListSizes(course,
-//                position);
 
         int numberOfAssignments = course.getAssignments().size();
-        addAssignmentTextViewsToLayout(course, relativeLayout, position,
-                numberOfAssignments);
+        addAssignmentTextViewsToLayout(course, relativeLayout, position,numberOfAssignments);
 
-        // testing the values of the assignmentArrayListSizes
-//        textView.setText(Integer.toString(numberOfAssignments));
-
-
-        // Checking the row position values
-        // textView.setText(Integer.toString(position));
-
-
-        // Checking the assignment ArrayList sizes for each courses
-        // textView.setText(Integer.toString(course.getAssignments().size()));
 
         // return the completed view to render on screen
         return convertView;
     }
 
+    public double averageGrade(Course course) {
+        double average = 0;
+        double numberOfAssignments = course.getAssignments().size();
+        for (int i = 0; i < course.getAssignments().size(); i++) {
+            average = (average + course.getAssignments().get(i).getAssignmentGrade());
+        }
 
-    public void addAssignmentTextViewsToLayout (Course course, RelativeLayout relativeLayout, int position, int numberOfAssignments){
+        return (average/numberOfAssignments);
+    }
 
-        for (int i = 0; i < numberOfAssignments; i++) {
 
+    public void addAssignmentTextViewsToLayout(Course course, RelativeLayout relativeLayout, int position, int numberOfAssignments){
+        // there is a bug with the layout
+        int i = 0;
+//        if(position == 0) numberOfAssignments = 1;
+        for ( ; i < numberOfAssignments; i++) {
 //            TextView textView = new TextView(getContext());
             TextView textView;
             textView = generateAssignmentTextView(course, relativeLayout, position, i);
@@ -101,44 +112,51 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
         int firstIDInRow = Integer.parseInt(generateID(position, 0));
         // for the first dynamic TextView in row, should be added below the Course Title
         if (id == firstIDInRow) {
-            firstTextViewInRow(textViewLayout);
+            firstTextViewInRow(textViewLayout, textView);
         } else {
             otherTextViewInRow(textViewLayout, id);
         }
 
         //textViewLayout.addRule(RelativeLayout.BELOW, R.id.courseTitleIDGA);
 
-        int allPadding = 5;
+        int allPadding = 2;
         textView.setPadding(dpToPx(allPadding), dpToPx(allPadding), dpToPx(allPadding), dpToPx(allPadding));
         textView.setLayoutParams(textViewLayout);
 
-        // setting textView text
-        String text = course.getAssignments().get(index).getAssignmentTitle() + "        " +
-                Integer.toString(course.getAssignments().get(index).getAssignmentGrade());
-//        textView.setText();
+        String text;
+        if (!letterGrade) {
+            // setting textView text
+            text = course.getAssignments().get(index).getAssignmentTitle() + "                         " +
+                    Integer.toString(course.getAssignments().get(index).getAssignmentGrade());
+        } else {
+
+            // setting textView text
+            text = course.getAssignments().get(index).getAssignmentTitle() + "                         " +
+                    conversionRangesForLetterGrades(course.getAssignments().get(index).getAssignmentGrade());
+
+        }
+//        // setting textView text
+//        String text = course.getAssignments().get(index).getAssignmentTitle() + "        " +
+//                Integer.toString(course.getAssignments().get(index).getAssignmentGrade());
 
         textView.setText(text);
-
-//                textView.setText("0011");
         return textView;
     }
 
-    public void firstTextViewInRow(RelativeLayout.LayoutParams textViewLayout) {
+    public void firstTextViewInRow(RelativeLayout.LayoutParams textViewLayout, TextView textView) {
         textViewLayout.addRule(RelativeLayout.BELOW, R.id.courseTitleIDGA);
+//        textView.setTranslationY(dpToPx(10));
+
     }
     public void otherTextViewInRow(RelativeLayout.LayoutParams textViewLayout, int id) {
         int prevID = (id - 1);
         textViewLayout.addRule(RelativeLayout.BELOW, prevID);
     }
 
-
-
     public static String generateID(int position, int index) {
         String newID = Integer.toString(position) + Integer.toString(index);
         return newID;
     }
-
-
 
     public void generateSingleTextView(RelativeLayout relativeLayout, TextView textView) {
 
@@ -152,7 +170,6 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
         relativeLayout.addView(textView);
     }
 
-
     // https://bit.ly/2DsU7q3
     public int pxToDp(int px) {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
@@ -162,6 +179,49 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
     public int dpToPx(int dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
+
+    // Converts an integer grade from 1 to 100 into a letter grade
+    public String conversionRangesForLetterGrades(int grade)
+    {
+        if(90 <= grade && grade <= 100) {
+            return "A+";
+        }
+        else if (85 <= grade && grade <= 89) {
+            return "A";
+        }
+        else if (80 <= grade && grade <= 84) {
+            return "A-";
+        }
+        else if(77 <= grade && grade <= 79) {
+            return "B+";
+        }
+        else if(73 <= grade && grade <= 76) {
+            return "B";
+        }
+        else if(70 <= grade && grade <= 72) {
+            return "B-";
+        }
+        else if(67 <= grade && grade <= 69) {
+            return "C+";
+        }
+        else if(63 <= grade && grade <= 66) {
+            return "C";
+        }
+        else if(60 <= grade && grade <= 62) {
+            return "C-";
+        }
+        else if(57 <= grade && grade <= 59) {
+            return "D+";
+        }
+        else if(53 <= grade && grade <= 56) {
+            return "D";
+        }
+        else if(50 <= grade && grade <= 52) {
+            return "D-";
+        }
+        else{ return "F";}
+    }
+
 
 
 }

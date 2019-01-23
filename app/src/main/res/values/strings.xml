@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">Assignment1_390</string>
     <string name="descriptionMainActivityTextBox">Button worked!</string>
-    <string name="gradeActivity">Grade Activity</string>
+    <string name="gradeActivity">Grade Viewer</string>
     <string name="viewGrades">View Grades</string>
     <string name="grades">Grades</string>
     <string name="showLetterGrade">Show Letter Grades</string>
     <string name="course_average">Course Average</string>
     <string name="course_name">Course Name</string>
+    <string name="welcome_to_grade_viewer">Welcome to Grade Viewer</string>
 
     <!--Example string that has tags other than the text formating tags, this requires CDATA-->
     <!--
