@@ -12,17 +12,18 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+
+// This is the customized ArrayAdapter class for the ListView found in the GradeActivity
 public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
 
     boolean letterGrade;
 
     public CustomAdapterGradeActivity(Context context, ArrayList<Course> courses, boolean letterGradeParam) {
         super(context, 0, courses);
-
         letterGrade = letterGradeParam;
     }
 
-    // Using custom array adapter -->  https://bit.ly/2qtVNYW
+    // Reference : Creating custom array adapter -->  https://bit.ly/2qtVNYW
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // getting data for the position
@@ -53,42 +54,43 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
             }
         }
 
-
-
         // Getting reference to the Relative Layout
         RelativeLayout relativeLayout = convertView.findViewById(R.id.customRowsGA);
 
-        // Dynamic Single TextView Generate TO TEST:
-//        TextView textView = new TextView(getContext());
-//        generateSingleTextView(relativeLayout, textView);
-//        textView.setText(Integer.toString(position));
-
-
         int numberOfAssignments = course.getAssignments().size();
+        // Generates the dyanmic TextVeiw for the Assignments
         addAssignmentTextViewsToLayout(course, relativeLayout, position,numberOfAssignments);
 
+
+        // TEST Code :: DYNAMIC SINGLE TEXTVIEW :
+        //        TextView textView = new TextView(getContext());
+        //        generateSingleTextView(relativeLayout, textView);
+        //        textView.setText(Integer.toString(position));
 
         // return the completed view to render on screen
         return convertView;
     }
 
+    // Calculates the average of the assignments
     public double averageGrade(Course course) {
         double average = 0;
         double numberOfAssignments = course.getAssignments().size();
         for (int i = 0; i < course.getAssignments().size(); i++) {
             average = (average + course.getAssignments().get(i).getAssignmentGrade());
         }
-
         return (average/numberOfAssignments);
     }
 
 
+    // --------------------------------------------------------------------------------------------
+                // These Following functions together generate the Dynamic TextView Objects
+                // in the GradeActivity page ListView object
+    // --------------------------------------------------------------------------------------------
     public void addAssignmentTextViewsToLayout(Course course, RelativeLayout relativeLayout, int position, int numberOfAssignments){
         // there is a bug with the layout
         int i = 0;
-//        if(position == 0) numberOfAssignments = 1;
+        //        if(position == 0) numberOfAssignments = 1;
         for ( ; i < numberOfAssignments; i++) {
-//            TextView textView = new TextView(getContext());
             TextView textView;
             textView = generateAssignmentTextView(course, relativeLayout, position, i);
             // The following adds the textView to the relative layout
@@ -158,6 +160,13 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
         return newID;
     }
 
+
+    // --------------------------------------------------------------------------------------------
+    // These functions above together generate the Dynamic TextView Objects
+    // in the GradeActivity page ListView object
+    // --------------------------------------------------------------------------------------------
+
+    // Test Purpose Function
     public void generateSingleTextView(RelativeLayout relativeLayout, TextView textView) {
 
         int allPadding = 10;
@@ -169,6 +178,9 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
         // The following adds the textView to the Layout
         relativeLayout.addView(textView);
     }
+
+
+    // The following are the helper functions
 
     // https://bit.ly/2DsU7q3
     public int pxToDp(int px) {

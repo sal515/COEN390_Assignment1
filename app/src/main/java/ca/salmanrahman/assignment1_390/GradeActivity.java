@@ -32,38 +32,18 @@ public class GradeActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-//        adapterGradeActivity = new CustomAdapterGradeActivity(
-//                this, courses );
-//
-//        linkAdapterToListView(courses, adapterGradeActivity);
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-//        finish();
-//        adapterGradeActivity.clear();
-
-    }
-
+    // This function links the customized Array adapter to the ListView on the GradeActivity Page
     private void linkAdapterToListView(ArrayList<Course> courses, CustomAdapterGradeActivity adapterGradeActivity) {
-//        testActionBackChbx = findViewById(R.id.testShowLetterGrade);
-
         // New object of Custom Array Adapter is created, it converts the array to views
 //        CustomAdapterGradeActivity adapterGradeActivity = new CustomAdapterGradeActivity(
 //                this, courses );
         // Connect the adapter to the ListView
+
         ListView listView = findViewById(R.id.listViewIDGA);
         listView.setAdapter(adapterGradeActivity);
-
-
     }
 
-    // To generate courseTitle
+    // To generate courseObjects with the assignment objects in them
     private ArrayList<Course> generateCourses(int numberCourses) {
         ArrayList<Course> courses = new ArrayList<Course>(5);
         for (int i = 1; i < numberCourses; i++) {
@@ -73,7 +53,7 @@ public class GradeActivity extends AppCompatActivity {
 
     }
 
-
+    // Unused Helper functions
     public static int charToAsciiNum(char ch) {
         int asciiNum = (int) ch;
         return asciiNum;
@@ -84,8 +64,7 @@ public class GradeActivity extends AppCompatActivity {
     }
 
 
-
-    // methods for action bar
+    // methods for action bar to detect selections or clicks
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.gradesacvitity_menu, menu);
