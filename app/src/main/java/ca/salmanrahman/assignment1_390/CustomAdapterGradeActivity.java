@@ -128,12 +128,12 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
         String text;
         if (!letterGrade) {
             // setting textView text
-            text = course.getAssignments().get(index).getAssignmentTitle() + "                         " +
+            text = course.getAssignments().get(index).getAssignmentTitle() + "                                   " +
                     Integer.toString(course.getAssignments().get(index).getAssignmentGrade());
         } else {
 
             // setting textView text
-            text = course.getAssignments().get(index).getAssignmentTitle() + "                         " +
+            text = course.getAssignments().get(index).getAssignmentTitle() + "                                   " +
                     conversionRangesForLetterGrades(course.getAssignments().get(index).getAssignmentGrade());
 
         }
@@ -156,7 +156,7 @@ public class CustomAdapterGradeActivity extends ArrayAdapter<Course> {
     }
 
     public static String generateID(int position, int index) {
-        String newID = Integer.toString(position) + Integer.toString(index);
+        String newID = Integer.toString(position) + "9"+ Integer.toString(index);
         return newID;
     }
 
